@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<script>
+
+  function handle(files) {
+
+    if (files.length == 0) {
+      return;
+    }
+
+    var canvas = document.querySelector("canvas"),
+      context = canvas.getContext("2d");
+
+    var image = new Image;
+    image.src = files[0].name;
+    image.onload = function () {
+      canvas.width = image.width;
+      canvas.height = image.height;
+      context.drawImage(image, 0, 0);
+
+      // var a = document.createElement("a");
+      // a.download = files[0].name + ".png";
+      // a.href = canvas.toDataURL("image/png");
+      // a.click();
+    };
+
+  }
+
+
+
+</script>
+
+<label for="avatar">Choose a picture:</label>
+<p></p>
+<input type="file" id="file" accept=".svg" onchange=handle(this.files)>
+<p></p>
+<canvas width="640" height="640"></canvas>
