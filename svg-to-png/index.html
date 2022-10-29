@@ -10,19 +10,21 @@
 <!-- thanks to https://mybyways.com/blog/convert-svg-to-png-using-your-browser -->
 
 <body bgcolor="#E6E6FA">
-    <h1><a href="http://mybyways.com/blog/convert-svg-to-png-using-your-browser">myByways SVG to PNG Converter</a></h1>
-    <label for="avatar">Choose a picture:</label>
     <p></p>
     <input type="file" id="file" accept=".svg" onchange=handle(this.files)>
     <p></p>
-
-    <textarea id="t" rows="8" cols="70"></textarea><br /><br />
-    <button id="l">Load SVG</button><br /><br />
-    <div id="d"></div><br />
+    <button id="l">Load SVG</button>
+    <p></p>
     Width: <input id="w" type="number" max="9999"></input>
-    Height: <input id="h" type="number" max="9999"></input><br />
-    <button id="s">Save SVG as PNG</button><br /><br />
+    Height: <input id="h" type="number" max="9999"></input>
+    <p></p>
+    <button id="s">Save SVG as PNG</button>
+    <p></p>
+    <textarea id="t" rows="8" cols="70"></textarea>
+    <p></p>
     <canvas id="c"></canvas>
+    <p></p>
+    <div id="d"></div>
     <script>
 
         function handle(files) {
@@ -35,10 +37,10 @@
             reader.addEventListener("load", () => {
                 // this will then display a text file
                 document.getElementById('t').innerText = reader.result;
+                document.getElementById('l').click();
+                document.getElementById('s').click();
             }, false);
-            reader.readAsText(files[0])
-
-
+            reader.readAsText(files[0]);
         }
     </script>
     <script>
@@ -81,6 +83,7 @@
                 document.body.removeChild(a);
             };
             img.src = url;
+            img.setAttribute("crossOrigin",'Anonymous');
         });
     </script>
 </body>
