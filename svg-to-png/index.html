@@ -18,7 +18,7 @@
     Width: <input id="w" type="number" max="9999"></input>
     Height: <input id="h" type="number" max="9999"></input>
     <p></p>
-    <button id="s">Save SVG as PNG</button>
+    <a style="padding:3px 8px;font-size:12px;font-weight:bold;text-decoration:none;border-radius:1em;background:#666;color:white;" href="javascript:(function(e){e.src='https://mbostock.github.io/svjimmy/index.js',document.body.appendChild(e)})(document.createElement('script'));">Download</a>
     <p></p>
     <textarea id="t" rows="8" cols="70"></textarea>
     <p></p>
@@ -58,33 +58,33 @@
             width.value = svg.getBoundingClientRect().width;
             height.value = svg.getBoundingClientRect().height;
         });
-        document.getElementById('s').addEventListener('click', function () {
-            var canvas = document.getElementById('c');
-            svg.setAttribute('width', width.value);
-            svg.setAttribute('height', height.value);
-            canvas.width = width.value;
-            canvas.height = height.value;
-            var data = new XMLSerializer().serializeToString(svg);
-            var win = window.URL || window.webkitURL || window;
-            var img = new Image();
-            var blob = new Blob([data], { type: 'image/svg+xml' });
-            var url = win.createObjectURL(blob);
-            img.onload = function () {
-                canvas.getContext('2d').drawImage(img, 0, 0);
-                win.revokeObjectURL(url);
-                var uri = canvas.toDataURL('image/png').replace('image/png', 'octet/stream');
-                var a = document.createElement('a');
-                document.body.appendChild(a);
-                a.style = 'display: none';
-                a.href = uri
-                a.download = (svg.id || svg.svg.getAttribute('name') || svg.getAttribute('aria-label') || 'untitled') + '.png';
-                a.click();
-                window.URL.revokeObjectURL(uri);
-                document.body.removeChild(a);
-            };
-            img.src = url;
-            img.setAttribute("crossOrigin",'Anonymous');
-        });
+        // document.getElementById('s').addEventListener('click', function () {
+        //     var canvas = document.getElementById('c');
+        //     svg.setAttribute('width', width.value);
+        //     svg.setAttribute('height', height.value);
+        //     canvas.width = width.value;
+        //     canvas.height = height.value;
+        //     var data = new XMLSerializer().serializeToString(svg);
+        //     var win = window.URL || window.webkitURL || window;
+        //     var img = new Image();
+        //     var blob = new Blob([data], { type: 'image/svg+xml' });
+        //     var url = win.createObjectURL(blob);
+        //     img.onload = function () {
+        //         canvas.getContext('2d').drawImage(img, 0, 0);
+        //         win.revokeObjectURL(url);
+        //         var uri = canvas.toDataURL('image/png').replace('image/png', 'octet/stream');
+        //         var a = document.createElement('a');
+        //         document.body.appendChild(a);
+        //         a.style = 'display: none';
+        //         a.href = uri
+        //         a.download = (svg.id || svg.svg.getAttribute('name') || svg.getAttribute('aria-label') || 'untitled') + '.png';
+        //         a.click();
+        //         window.URL.revokeObjectURL(uri);
+        //         document.body.removeChild(a);
+        //     };
+        //     img.src = url;
+        //     img.setAttribute("crossOrigin",'Anonymous');
+        // });
     </script>
 </body>
 
